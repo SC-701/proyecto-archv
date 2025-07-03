@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IClienteFlujo, ClienteFlujo>();
 builder.Services.AddScoped<IClienteDA, ClienteDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
-
+builder.Services.AddScoped<IProductoFlujo, ProductoFlujo>();
+builder.Services.AddScoped<IProductoDA, ProductoDA>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

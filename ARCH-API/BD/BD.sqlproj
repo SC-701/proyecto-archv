@@ -69,5 +69,11 @@
     <Build Include="dbo\Stored Procedures\EliminarCliente.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerClientes.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerCliente.sql" />
+    <Build Include="dbo\Tables\Productos.sql" />
+    <Build Include="dbo\Stored Procedures\AgregarProducto.sql" />
+    <Build Include="dbo\Stored Procedures\EditarProducto.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarProducto.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerProducto.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerProductos.sql" />
   </ItemGroup>
 </Project>
