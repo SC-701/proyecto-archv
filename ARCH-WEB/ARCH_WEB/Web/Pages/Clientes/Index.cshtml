@@ -1,0 +1,55 @@
+﻿@page
+@model Web.Pages.Clientes.IndexModel
+@{
+}
+<header class="subhead">
+    <div class="container text-center">
+        <h1 class="masthead-heading text-uppercase">Lista de Clientes</h1>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="text-start mb-4">
+            <a type="button" class="btn btn-success btn-lg" asp-page="./Agregar"><i class="bi bi-plus-square"></i>
+                <i class="fa-solid fa-user-plus"></i> Agregar
+            </a>
+        </div>
+        <div class="row">
+            @if (Model.clientes != null)
+                @foreach (var cliente in Model.clientes)
+                {
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-user"></i> @($"{cliente.Nombre} {cliente.Apellidos}")
+                                </h6>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-mobile"></i> @Html.DisplayFor(modelo => cliente.Telefono)
+                                </h6>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-location-dot"></i> @($"{cliente.Provincia}, {cliente.DireccionExacta}")
+                                </p>
+                                <hr/>
+                                <div class="d-flex gap-3">
+                                    <a type="button" class="btn btn-outline-warning" asp-page="./Editar" asp-route-id="@cliente.Id">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                    </a>
+                                    <a type="button" class="btn btn-outline-danger" asp-page="./Eliminar" asp-route-id="@cliente.Id">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    No hay clientes disponibles.
+                </div>
+            }
+        </div>
+    </div>
+</section>
