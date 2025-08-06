@@ -1,0 +1,74 @@
+﻿@page
+@model Web.Pages.Productos.EditarModel
+@{
+}
+
+<section id="principal">
+    <div class="container">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto" style="width: 900px;">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="mb-4 text-center text-warning">
+                        <i class="bi bi-pencil-square me-2"></i>Editar producto
+                    </h2>
+
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="producto.Nombre" class="form-label fw-semibold">
+                                <i class="bi bi-person-fill me-1"></i>Nombre
+                            </label>
+                            <input class="form-control rounded-pill" type="text" asp-for="producto.Nombre" />
+                            <span class="text-danger small" asp-validation-for="producto.Nombre"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="producto.Precio" class="form-label fw-semibold">
+                                <i class="bi bi-person-lines-fill me-1"></i>Precio
+                            </label>
+                            <input class="form-control rounded-pill" type="text" asp-for="producto.Precio" />
+                            <span class="text-danger small" asp-validation-for="producto.Precio"></span>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="producto.Cantidad" class="form-label fw-semibold">
+                                    <i class="bi bi-telephone-fill me-1"></i>Cantidad
+                                </label>
+                                <input class="form-control rounded-pill" type="number" asp-for="producto.Cantidad" />
+                                <span class="text-danger small" asp-validation-for="producto.Cantidad"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="producto.Talla" class="form-label fw-semibold">
+                                    <i class="bi bi-telephone-fill me-1"></i>Talla
+                                </label>
+                                <input class="form-control rounded-pill" type="text" asp-for="producto.Talla" />
+                                <span class="text-danger small" asp-validation-for="producto.Talla"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 mb-3">
+                            <label asp-for="producto.Fecha" class="form-label fw-semibold">
+                                <i class="bi bi-house-door-fill me-1"></i>Fecha 
+                            </label>
+                            <input class="form-control rounded-3" type="text" asp-for="producto.Fecha" />
+                            <span class="text-danger small" asp-validation-for="producto.Fecha"></span>
+                        </div>
+
+                        <div class="text-danger small" asp-validation-summary="All"></div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-primary rounded-pill px-4" asp-page="./Index">
+                                <i class="fa-regular fa-circle-left"></i> Regresar
+                            </a>
+                            <button type="submit" class="btn btn-outline-warning rounded-pill px-4">
+                                <i class="fa-solid fa-pen"></i>Editar
+                            </button>
+                        </div>
+
+                        <input type="hidden" asp-for="producto.Id" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
