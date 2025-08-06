@@ -18,6 +18,9 @@ builder.Services.AddScoped<IClienteDA, ClienteDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IProductoFlujo, ProductoFlujo>();
 builder.Services.AddScoped<IProductoDA, ProductoDA>();
+builder.Services.AddScoped<IApartadoFlujo, ApartadoFlujo>();
+builder.Services.AddScoped<IApartadoDA, ApartadoDA>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
