@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [dbo].[EliminarApartado]
+	@Id UNIQUEIDENTIFIER	
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRANSACTION
+		DELETE
+		FROM            Apartados 
+		WHERE        (Id = @Id)
+		SELECT @Id
+	COMMIT TRANSACTION
+END
