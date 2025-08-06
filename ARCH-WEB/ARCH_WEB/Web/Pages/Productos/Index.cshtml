@@ -1,0 +1,63 @@
+﻿@page
+@model Web.Pages.Productos.IndexModel
+@{
+}
+<header class="subhead">
+    <div class="container text-center">
+        <h1 class="masthead-heading text-uppercase">Lista de Productos</h1>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <div class="text-start mb-4">
+            <a type="button" class="btn btn-success btn-lg" asp-page="./Agregar">
+                <i class="bi bi-plus-square"></i>
+                <i class="fa-solid fa-user-plus"></i> Agregar
+            </a>
+        </div>
+        <div class="row">
+            @if (Model.productos != null)
+                @foreach (var producto in Model.productos)
+                {
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                            <div class="card-body">
+                                <h5 class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-bag-shopping"></i> @($"{producto.Nombre}")
+                                </h5>
+                                <h5 class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-money-check-dollar"></i> @($"{producto.Precio}")
+                                </h5>
+
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-arrow-down-9-1"></i> @Html.DisplayFor(modelo => producto.Cantidad)
+                                </h6>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-tag"></i> @($"{producto.Talla}")
+                                </p>
+                                <p class="card-subtitle mb-2 text-muted">
+                                    <i class="fa-solid fa-calendar"></i> @($"{producto.Fecha}")
+                                </p>
+                                <hr />
+                                <div class="d-flex gap-3">
+                                    <a type="button" class="btn btn-outline-warning" asp-page="./Editar" asp-route-id="@producto.Id">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                    </a>
+                                    <a type="button" class="btn btn-outline-danger" asp-page="./Eliminar" asp-route-id="@producto.Id">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    No hay productos disponibles.
+                </div>
+            }
+        </div>
+    </div>
+</section>

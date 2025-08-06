@@ -18,7 +18,7 @@ namespace Abstracciones.Modelos
         [Required(ErrorMessage = "El campo Cantidad es obligatorio.")]
         public string Cantidad { get; set; }
 
-        [Required(ErrorMessage = "El campo Talla es obligatorio.")]
+        
         public string Talla { get; set; }
 
         [Required(ErrorMessage = "El campo Fecha es obligatorio.")]
