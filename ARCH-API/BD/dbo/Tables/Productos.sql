@@ -5,5 +5,6 @@
     [Precio] DECIMAL (10,2)     NOT NULL,
 	[Cantidad] INT     NOT NULL,
 	[Talla] VARCHAR (10) ,
-	[Fecha] DATETIME DEFAULT GETDATE() ,
+	[Fecha] DATETIME DEFAULT GETDATE(), 
+    CONSTRAINT [PK_Productos] PRIMARY KEY ([Id]) ,
 )

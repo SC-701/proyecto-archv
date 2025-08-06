@@ -4,6 +4,7 @@
     [Apellidos]       VARCHAR (30)     NOT NULL,
     [Telefono]        VARCHAR (15)     NOT NULL,
     [Provincia]       VARCHAR (15)     NOT NULL,
-    [DireccionExacta] VARCHAR (MAX)    NOT NULL
+    [DireccionExacta] VARCHAR (MAX)    NOT NULL, 
+    CONSTRAINT [PK_Clientes] PRIMARY KEY ([Id])
 );
 
