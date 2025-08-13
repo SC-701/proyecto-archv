@@ -1,13 +1,17 @@
 ﻿CREATE PROCEDURE EliminarProducto
-	@Id UNIQUEIDENTIFIER	
+    @Id UNIQUEIDENTIFIER
 AS
 BEGIN
-	SET NOCOUNT ON;
+    SET NOCOUNT ON;
 
-	BEGIN TRANSACTION
-		DELETE
-		FROM            Productos
-		WHERE        (Id = @Id)
-		SELECT @Id
-	COMMIT TRANSACTION
+    -- Verifica si el producto está siendo usado en Apartados
+    IF EXISTS (SELECT 1 FROM Apartados WHERE IdProducto = @Id)
+    BEGIN
+        RAISERROR ('El producto está siendo utilizado en un apartado y no se puede eliminar.', 16, 1);
+        RETURN;
+    END
+
+    BEGIN TRANSACTION
+        DELETE FROM Productos WHERE Id = @Id;
+    COMMIT TRANSACTION
 END

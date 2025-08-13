@@ -12,6 +12,14 @@
                         ¿Está seguro que desea eliminar este producto?
                     </h4>
 
+                    @if (ViewData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error:</strong> @ViewData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                        </div>
+                    }
+
                     <form method="post">
                         <ul class="list-group list-group-flush mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-center">

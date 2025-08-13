@@ -2,9 +2,20 @@
 	@Id UNIQUEIDENTIFIER	
 AS
 BEGIN
-	SET NOCOUNT ON;
+    SET NOCOUNT ON;
 
-SELECT        Apartados.Id, Apartados.IdCliente, Apartados.IdProducto, Apartados.Abono, Apartados.Restante, Apartados.Fecha, Apartados.Estado
-FROM            Apartados
-WHERE        (Apartados.Id = @Id)
+    SELECT 
+        a.Id,
+        a.IdCliente,
+        c.Nombre AS Cliente,
+        a.IdProducto,
+        p.Nombre AS Producto,
+        p.Precio AS PrecioProducto,
+        a.Abono,
+        a.Fecha,
+        a.Estado
+    FROM Apartados a
+    INNER JOIN Clientes c ON a.IdCliente = c.Id
+    INNER JOIN Productos p ON a.IdProducto = p.Id
+    WHERE a.Id = @Id
 END
