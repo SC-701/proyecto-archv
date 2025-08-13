@@ -1,0 +1,70 @@
+﻿@page
+@model Web.Pages.Cuenta.LoginModel
+@{ 
+}
+<header class="subhead">
+    <div class="container">
+        <div class="masthead-subheading">SC-701: Programación Web Avanzada</div>
+        <div class="masthead-heading text-uppercase">Ejercicio persona</div>
+    </div>
+</header>
+
+
+<section class="page-section bg-light" id="principal">
+    <div class="container">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto bg-white p-2 p-md-5 rounded shadow">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Iniciar sesión</h2>
+                <h3 class="section-subheading text-muted">
+                    Lorem ipsum dolor sit amet consectetur.
+                </h3>
+            </div>
+            <form method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-envelope-at"></i>
+                    </span>
+                    <input type="email"
+                           placeholder="Correo electrónico"
+                           asp-for="loginInfo.CorreoElectronico"
+                           class="form-control form-control-lg" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="loginInfo.CorreoElectronico" class="text-danger"></span>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-key"></i>
+                    </span>
+                    <input type="password"
+                           placeholder="Contraseña"
+                           asp-for="loginInfo.Password"
+                           class="form-control form-control-lg" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="loginInfo.Password" class="text-danger"></span>
+                </div>
+                  @if (Model.token is not null && Model.token.ValidacionExitosa == false)
+                    {
+                    <div class="alert alert-warning" role="alert">
+                      Credenciales incorrectas!
+                    </div>
+                    } 
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                </div>
+                <input type="hidden" asp-for="loginInfo.CorreoElectronico" />
+            </form>
+            <div class="row">
+                <div class="col-12">
+                    <hr class="mt-5 mb-4 border-secondary-subtle" />
+                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center">
+                        <a href="./registro" class="link-secondary text-decoration-none">Registrarse</a>
+                        <a href="#!" class="link-secondary text-decoration-none">Olvidó su contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

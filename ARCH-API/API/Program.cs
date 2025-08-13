@@ -1,10 +1,36 @@
 using Abstracciones.Interfaces.DA;
 using Abstracciones.Interfaces.Flujo;
+using Flujo;
 using DA;
 using DA.Repositorios;
-using Flujo;
+using Abstracciones.Modelos;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Autorizacion.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Autenticacion
+var tokenConfiguration = builder.Configuration.GetSection("Token").Get<TokenConfiguracion>();
+var jwtIssuer = tokenConfiguration.Issuer;
+var jwtAudience = tokenConfiguration.Audience;
+var jwtKey = tokenConfiguration.key;
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    options => {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    }
+);
 
 // Add services to the container.
 
@@ -18,6 +44,11 @@ builder.Services.AddScoped<IClienteDA, ClienteDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IProductoFlujo, ProductoFlujo>();
 builder.Services.AddScoped<IProductoDA, ProductoDA>();
+
+builder.Services.AddTransient<Autorizacion.Abstracciones.Flujo.IAutorizacionFlujo, Autorizacion.Flujo.AutorizacionFlujo>();
+builder.Services.AddTransient<Autorizacion.Abstracciones.DA.ISeguridadDA, Autorizacion.DA.SeguridadDA>();
+builder.Services.AddTransient<Autorizacion.Abstracciones.DA.IRepositorioDapper, Autorizacion.DA.Repositorios.RepositorioDapper>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.AutorizacionClaims();
 
 app.UseAuthorization();
 

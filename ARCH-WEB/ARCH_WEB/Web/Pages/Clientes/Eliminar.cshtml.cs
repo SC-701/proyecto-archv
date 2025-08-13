@@ -24,6 +24,7 @@ namespace Web.Pages.Clientes
                 return NotFound();
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerCliente");
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint, id));
             var respuesta = await client.SendAsync(solicitud);
@@ -48,6 +49,7 @@ namespace Web.Pages.Clientes
 
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "EliminarCliente");
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var solicitud = new HttpRequestMessage(HttpMethod.Delete, string.Format(endpoint, id));
             var respuesta = await client.SendAsync(solicitud);

@@ -40,6 +40,7 @@ namespace Web.Pages.Clientes
 
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "AgregarCliente");
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var respuesta = await client.PostAsJsonAsync(endpoint, cliente);
             respuesta.EnsureSuccessStatusCode();
