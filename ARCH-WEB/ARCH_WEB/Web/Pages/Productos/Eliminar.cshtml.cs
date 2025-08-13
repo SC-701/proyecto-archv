@@ -51,8 +51,21 @@ namespace Web.Pages.Productos
 
             var solicitud = new HttpRequestMessage(HttpMethod.Delete, string.Format(endpoint, id));
             var respuesta = await client.SendAsync(solicitud);
-            respuesta.EnsureSuccessStatusCode();
+
+            if (!respuesta.IsSuccessStatusCode)
+            {
+                if (respuesta.StatusCode == HttpStatusCode.InternalServerError)
+                {
+                    ViewData["Error"] = "No se puede eliminar este producto porque está siendo apartado por uno o más clientes.";
+                    return Page();
+                }
+
+                ViewData["Error"] = $"Error inesperado: {respuesta.StatusCode}";
+                return Page();
+            }
+
             return RedirectToPage("./Index");
         }
+
     }
 }

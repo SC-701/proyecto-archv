@@ -60,7 +60,7 @@ namespace DA
         public async Task<Guid> Eliminar(Guid id)
         {
             await VerificarProductoExiste(id);
-            string query = @"ElminarProducto";
+            string query = @"EliminarProducto";
             var resultadoConsulta = await _sqlConnection.ExecuteScalarAsync<Guid>(query, new { Id = id });
 
             return resultadoConsulta;

@@ -24,8 +24,7 @@ namespace DA
                 Id = Guid.NewGuid(),
                 IdCliente = apartado.IdCliente,
                 IdProducto = apartado.IdProducto,
-                Abono = apartado.Abodo,
-                Restante = apartado.Restante,
+                Abono = apartado.Abono,
                 Fecha = apartado.Fecha,
                 Estado = apartado.Estado
             });
@@ -42,8 +41,7 @@ namespace DA
                 Id = Id,
                 IdCliente = apartado.IdCliente,
                 IdProducto = apartado.IdProducto,
-                Abono = apartado.Abodo,
-                Restante = apartado.Restante,
+                Abono = apartado.Abono,
                 Fecha = apartado.Fecha,
                 Estado = apartado.Estado
             });

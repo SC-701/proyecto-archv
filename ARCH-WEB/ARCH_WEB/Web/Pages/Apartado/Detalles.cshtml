@@ -1,0 +1,32 @@
+﻿@page "{id:guid}"
+@model Web.Pages.Apartado.DetallesModel
+@{
+    ViewData["Title"] = "Detalles del Apartado";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Detalles del Apartado</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Cliente:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Cliente</dd>
+
+                <dt class="col-sm-3">Producto:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Producto</dd>
+
+                <dt class="col-sm-3">Abono:</dt>
+                <dd class="col-sm-9">₡@Model.Apartado.Abono</dd>
+
+                <dt class="col-sm-3">Fecha:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Fecha.ToString("dd/MM/yyyy")</dd>
+
+                <dt class="col-sm-3">Estado:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Estado</dd>
+            </dl>
+        </div>
+    </div>
+
+    <a asp-page="Index" class="btn btn-secondary mt-3">Volver a la lista</a>
+</div>
