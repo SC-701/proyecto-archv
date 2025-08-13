@@ -1,0 +1,72 @@
+﻿@page "{id:guid}"
+@model Web.Pages.Apartado.EditarModel
+@{
+    ViewData["Title"] = "Editar Apartado";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Editar Apartado</h2>
+
+    <form method="post">
+        <input type="hidden" asp-for="apartado.Id" />
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Cliente</label>
+                <select asp-for="apartado.IdCliente" class="form-select" required>
+                    <option value="">Seleccione un cliente</option>
+                    @foreach (var cliente in Model.Clientes)
+                    {
+                        <option value="@cliente.Id" selected="@(cliente.Id == Model.apartado.IdCliente)">
+                            @cliente.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Producto</label>
+                <select asp-for="apartado.IdProducto" class="form-select" required>
+                    <option value="">Seleccione un producto</option>
+                    @foreach (var producto in Model.Productos)
+                    {
+                        <option value="@producto.Id" selected="@(producto.Id == Model.apartado.IdProducto)">
+                            @producto.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label asp-for="apartado.Abono" class="form-label"></label>
+                <input asp-for="apartado.Abono" class="form-control" type="number" step="0.01" required />
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="apartado.Fecha" class="form-label"></label>
+                <input asp-for="apartado.Fecha" class="form-control" type="date" required />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apartado.Estado" class="form-label"></label>
+            <select asp-for="apartado.Estado" class="form-select">
+                <option value="Apartado">Apartado</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Listo para entrega">Listo para entrega</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+            <span asp-validation-for="apartado.Estado" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a asp-page="Index" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

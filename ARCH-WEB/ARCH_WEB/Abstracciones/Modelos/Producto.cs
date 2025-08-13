@@ -13,12 +13,12 @@ namespace Abstracciones.Modelos
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El campo Precio es obligatorio.")]
-        public string Precio { get; set; }
+        public decimal Precio { get; set; }
 
         [Required(ErrorMessage = "El campo Cantidad es obligatorio.")]
-        public string Cantidad { get; set; }
+        public int Cantidad { get; set; }
 
-        [Required(ErrorMessage = "El campo Talla es obligatorio.")]
+        
         public string Talla { get; set; }
 
         [Required(ErrorMessage = "El campo Fecha es obligatorio.")]

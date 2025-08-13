@@ -3,7 +3,6 @@
     @IdCliente UNIQUEIDENTIFIER, 
     @IdProducto UNIQUEIDENTIFIER, 
     @Abono DECIMAL(10, 2), 
-    @Restante DECIMAL(10, 2), 
     @Fecha DATETIME, 
     @Estado VARCHAR(15)		
 AS
@@ -15,7 +14,6 @@ BEGIN
 		   SET [IdCliente] = @IdCliente
 			  ,[IdProducto] = @IdProducto
 			  ,[Abono] = @Abono
-			  ,[Restante] = @Restante
 			  ,[Fecha] = @Fecha
 			  ,[Estado] = @Estado
 		 WHERE Id = @Id
