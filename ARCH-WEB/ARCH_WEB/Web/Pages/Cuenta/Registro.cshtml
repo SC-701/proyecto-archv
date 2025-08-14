@@ -1,0 +1,76 @@
+﻿@page
+@model Web.Pages.Cuenta.RegistroModel
+@{
+}
+<header class="subhead">
+    <div class="container">
+        <div class="masthead-subheading">SC-701: Programación Web Avanzada</div>
+        <div class="masthead-heading text-uppercase">Ejercicio persona</div>
+    </div>
+</header>
+
+<section class="page-section bg-light" id="principal">
+    <div class="container">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto bg-white p-2 p-md-5 rounded shadow">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Registrarse</h2>
+                <h3 class="section-subheading text-muted">
+                    Lorem ipsum dolor sit amet consectetur.
+                </h3>
+            </div>
+            <form method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class=" bi bi-person-fill"></i>
+                    </span>
+                    <input type="text" asp-for="usuario.NombreUsuario" class="form-control"
+                           placeholder="Nombre de usuario" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="usuario.NombreUsuario" class="text-danger"></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class=" bi bi-envelope-at-fill"></i>
+                    </span>
+                    <input type="email" asp-for="usuario.CorreoElectronico" class="form-control"
+                           placeholder="Correo electrónico" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="usuario.CorreoElectronico" class="text-danger"></span>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class=" bi bi-key-fill"></i>
+                    </span>
+                    <input type="password" asp-for="usuario.Password" class="form-control" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="usuario.Password" class="text-danger"></span>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class=" bi bi-key-fill"></i>
+                    </span>
+                    <input type="password" asp-for="usuario.ConfirmarPassword" class="form-control" />
+                </div>
+                <div class="input-group mb-3">
+                    <span asp-validation-for="usuario.ConfirmarPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="aceptar" />
+                    He leído y acepto <a href="#!">los términos y condiciones de uso</a>
+                    </label>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Registrarse</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>

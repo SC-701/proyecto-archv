@@ -39,6 +39,7 @@ namespace Web.Pages.Clientes
                 return NotFound();
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerCliente");
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var solicitud = new HttpRequestMessage(HttpMethod.Get, string.Format(endpoint, id));
             var respuesta = await client.SendAsync(solicitud);
@@ -65,6 +66,7 @@ namespace Web.Pages.Clientes
 
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "EditarCliente");
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var respuesta = await client.PutAsJsonAsync<Cliente>(string.Format(endpoint, cliente.Id.ToString()), new Cliente { Nombre = cliente.Nombre, Apellidos = cliente.Apellidos, Telefono = cliente.Telefono, Provincia = cliente.Provincia, DireccionExacta = cliente.DireccionExacta });
             respuesta.EnsureSuccessStatusCode();

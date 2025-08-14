@@ -81,5 +81,11 @@
     <Build Include="dbo\Stored Procedures\EliminarApartado.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerApartado.sql" />
     <Build Include="dbo\Stored Procedures\ObtenerApartados.sql" />
+    <Build Include="dbo\Tables\Usuarios.sql" />
+    <Build Include="dbo\Tables\PerfilesxUsuario.sql" />
+    <Build Include="dbo\Tables\Perfiles.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerPerfilesxUsuario.sql" />
+    <Build Include="dbo\Stored Procedures\AgregarUsuario.sql" />
   </ItemGroup>
 </Project>

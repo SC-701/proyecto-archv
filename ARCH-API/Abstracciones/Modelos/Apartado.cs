@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Abstracciones.Modelos
 {
@@ -8,6 +11,8 @@ namespace Abstracciones.Modelos
     {
         [Required(ErrorMessage = "El campo abono es obligatorio.")]
         public decimal Abono { get; set; }
+
+        public Decimal Restante { get; set; }
 
         [Required(ErrorMessage = "El campo fecha es obligatorio.")]
         public DateTime Fecha { get; set; }
