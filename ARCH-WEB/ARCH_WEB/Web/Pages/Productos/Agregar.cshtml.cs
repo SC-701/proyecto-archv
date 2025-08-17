@@ -28,7 +28,7 @@ namespace Web.Pages.Productos
 
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "AgregarProductos");
             var client = new HttpClient();
-
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var respuesta = await client.PostAsJsonAsync(endpoint, producto);
             respuesta.EnsureSuccessStatusCode();
             return RedirectToPage("./Index");
