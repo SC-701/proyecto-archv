@@ -26,6 +26,7 @@ namespace Web.Pages.Apartado
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerApartado").Replace("{0}", id.ToString());
 
             var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var respuesta = await cliente.GetAsync(endpoint);
 
             if (respuesta.StatusCode == HttpStatusCode.OK)
@@ -50,6 +51,7 @@ namespace Web.Pages.Apartado
             string url = _configuracion.ObtenerMetodo("ApiEndPoints", "EliminarApartado").Replace("{0}", Apartado.Id.ToString());
 
             var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var respuesta = await cliente.DeleteAsync(url);
 
             if (!respuesta.IsSuccessStatusCode)

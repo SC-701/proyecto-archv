@@ -32,6 +32,7 @@ namespace Web.Pages.Apartado
             string endpoint = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerApartado").Replace("{0}", id.ToString());
 
             var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var respuesta = await cliente.GetAsync(endpoint);
 
             if (respuesta.IsSuccessStatusCode)
@@ -68,6 +69,7 @@ namespace Web.Pages.Apartado
             string url = _configuracion.ObtenerMetodo("ApiEndPoints", "EditarApartado").Replace("{0}", apartado.Id.ToString());
 
             var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var respuesta = await cliente.PutAsJsonAsync(url, apartado);
 
             if (!respuesta.IsSuccessStatusCode)
@@ -82,7 +84,7 @@ namespace Web.Pages.Apartado
         private async Task CargarClientesYProductos()
         {
             var http = new HttpClient();
-
+            http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var endpointClientes = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerClientes");
             var respClientes = await http.GetAsync(endpointClientes);
             if (respClientes.StatusCode == HttpStatusCode.OK)

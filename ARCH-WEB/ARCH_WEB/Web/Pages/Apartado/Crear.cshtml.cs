@@ -41,6 +41,7 @@ namespace Web.Pages.Apartado
             string url = _configuracion.ObtenerMetodo("ApiEndPoints", "AgregarApartado");
 
             using var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var contenido = JsonContent.Create(apartado);
             var respuesta = await cliente.PostAsync(url, contenido);
 
@@ -58,6 +59,7 @@ namespace Web.Pages.Apartado
         private async Task CargarClientesYProductos()
         {
             var http = new HttpClient();
+            http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
 
             var urlClientes = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerClientes");
             var respClientes = await http.GetAsync(urlClientes);

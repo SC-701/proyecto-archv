@@ -22,6 +22,7 @@ namespace Web.Pages.Apartado
             string url = _configuracion.ObtenerMetodo("ApiEndPoints", "ObtenerApartados");
 
             var cliente = new HttpClient();
+            cliente.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", HttpContext.User.Claims.Where(c => c.Type == "Token").FirstOrDefault().Value);
             var solicitud = new HttpRequestMessage(HttpMethod.Get, url);
             var respuesta = await cliente.SendAsync(solicitud);
 
