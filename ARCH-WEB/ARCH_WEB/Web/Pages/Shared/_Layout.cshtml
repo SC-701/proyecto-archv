@@ -1,59 +1,203 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@{
+    Layout = null;
+    var isHome = string.Equals(ViewContext.RouteData.Values["page"]?.ToString(), "/Index", StringComparison.OrdinalIgnoreCase);
+}
+
+
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Web</title>
+    <title>@ViewData["Title"] - ARCHV</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Web.styles.css" asp-append-version="true" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400;700&display=swap" rel="stylesheet" />
 
+    <style>
+        :root {
+            --bg: #111;
+            --text: #f1f1f1;
+            --panel: #151517;
+            --border: #2a2a2e;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* evita scroll horizontal con full-bleed */
+        }
+
+        header, footer {
+            background: #000;
+            color: var(--text);
+        }
+
+        .navbar {
+            background: #000 !important;
+            min-height: 60px;
+        }
+
+            .navbar .container {
+                display: flex;
+                align-items: center;
+            }
+
+        .navbar-brand {
+            margin-right: 1rem;
+        }
+
+            .navbar-brand img {
+                height: 50px;
+                width: auto;
+                object-fit: contain;
+            }
+
+        .navbar-toggler {
+            border-color: rgba(255,255,255,.25);
+        }
+
+        .metal-text {
+            font-family: 'Anton',sans-serif;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 1.125rem;
+            letter-spacing: 1px;
+            line-height: 1;
+            color: #d9d9d9;
+            background: linear-gradient(180deg,#f2f2f2 0%,#d9d9d9 25%,#bfbfbf 50%,#d9d9d9 75%,#f2f2f2 100%), repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0px, rgba(0,0,0,.07) 1px, transparent 2px);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: #d0d0d0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,.9), -1px -1px 1px rgba(0,0,0,.8), 1px -1px 1px rgba(0,0,0,.8), -1px 1px 1px rgba(0,0,0,.8);
+        }
+
+        .navbar .nav-link {
+            padding: .5rem .9rem;
+            display: flex;
+            align-items: center;
+        }
+
+            .navbar .nav-link:hover, .navbar .nav-link:focus {
+                text-decoration: none;
+                -webkit-text-fill-color: #e2e2e2;
+            }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .form-control, .form-select {
+            background: #1a1b1e;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+        }
+
+            .form-control:focus, .form-select:focus {
+                background: #1a1b1e;
+                color: #fff;
+                border-color: #3a3af0;
+                box-shadow: 0 0 0 .2rem rgba(58,58,240,.25);
+            }
+
+        .btn {
+            border-radius: .75rem;
+        }
+
+        footer {
+            padding: 1rem 0;
+            text-align: center;
+            font-size: .9rem;
+            border-top: 1px solid var(--border) !important;
+        }
+
+            footer a {
+                color: var(--text);
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    color: #fff;
+                    text-decoration: underline;
+                }
+
+        /* Permite secciones de ancho completo, incluso si están dentro de .container */
+        .full-bleed {
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            width: 100vw;
+            max-width: 100vw;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark border-bottom shadow-sm">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/images/logo.png" alt="ARCHV Logo" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Menú">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Clientes/Index">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Productos/Index">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Apartado/Index">Apartados</a>
-                        </li>
+
+                <div id="mainNav" class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link metal-text" asp-area="" asp-page="/Index">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link metal-text" asp-area="" asp-page="/Clientes/Index">Clientes</a></li>
+                        <li class="nav-item"><a class="nav-link metal-text" asp-area="" asp-page="/Productos/Index">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link metal-text" asp-area="" asp-page="/Apartado/Index">Apartados</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    @* Home sin márgenes ni container *@
+    @if (isHome)
+    {
+        <main role="main" class="p-0 m-0">
             @RenderBody()
         </main>
-    </div>
+    }
+    else
+    {
+        <div class="container my-4">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2025 - ARCHV - <a asp-area="" asp-page="/Privacy">Política de Privacidad</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
