@@ -25,7 +25,14 @@ builder.Services.AddTransient<ISeguridadDA, SeguridadDA>();
 builder.Services.AddTransient<IAutorizacionFlujo, AutorizacionFlujo>();
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/");
+
+    options.Conventions.AllowAnonymousToPage("/Cuenta/Login");
+    options.Conventions.AllowAnonymousToPage("/Cuenta/Registro");
+    options.Conventions.AllowAnonymousToPage("/Cuenta/AccesoDenegado");
+});
 builder.Services.AddScoped<IConfiguracion, Configuracion>();
 
 var app = builder.Build();

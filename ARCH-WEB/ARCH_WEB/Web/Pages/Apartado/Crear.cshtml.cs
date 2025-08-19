@@ -45,7 +45,7 @@ namespace Web.Pages.Apartado
             var contenido = JsonContent.Create(apartado);
             var respuesta = await cliente.PostAsync(url, contenido);
 
-            if (!respuesta.IsSuccessStatusCode)
+                if (!respuesta.IsSuccessStatusCode)
             {
                 var error = await respuesta.Content.ReadAsStringAsync();
                 ViewData["ErrorStock"] = "No se pudo guardar el apartado. Verifique disponibilidad del producto.";
