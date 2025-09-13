@@ -1,0 +1,75 @@
+﻿@page
+@model Web.Pages.Clientes.AgregarModel
+@{
+}
+
+<section id="principal">
+    <div class="container">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto" style="width: 900px;">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h2 class="mb-4 text-center"><i class="bi bi-person-plus-fill me-2"></i>Agregar Cliente</h2>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="cliente.Nombre" class="form-label fw-semibold">
+                                <i class="bi bi-person-fill me-1"></i>Nombre
+                            </label>
+                            <input class="form-control rounded-pill" type="text" asp-for="cliente.Nombre" />
+                            <span class="text-danger small" asp-validation-for="cliente.Nombre"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="cliente.Apellidos" class="form-label fw-semibold">
+                                <i class="bi bi-person-lines-fill me-1"></i>Apellidos
+                            </label>
+                            <input class="form-control rounded-pill" type="text" asp-for="cliente.Apellidos" />
+                            <span class="text-danger small" asp-validation-for="cliente.Apellidos"></span>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="cliente.Telefono" class="form-label fw-semibold">
+                                    <i class="bi bi-telephone-fill me-1"></i>Teléfono
+                                </label>
+                                <input class="form-control rounded-pill" type="number" asp-for="cliente.Telefono" />
+                                <span class="text-danger small" asp-validation-for="cliente.Telefono"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="cliente.Provincia" class="form-label fw-semibold">
+                                    <i class="bi bi-geo-alt-fill me-1"></i>Provincia
+                                </label>
+                                <select asp-for="cliente.Provincia" class="form-select rounded-pill">
+                                    <option value="" selected disabled>Seleccione una provincia</option>
+                                    @foreach (var provincia in Model.provincias)
+                                    {
+                                        <option value="@provincia">@provincia</option>
+                                    }
+                                </select>
+                                <span class="text-danger small" asp-validation-for="cliente.Provincia"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 mb-3">
+                            <label asp-for="cliente.DireccionExacta" class="form-label fw-semibold">
+                                <i class="bi bi-house-door-fill me-1"></i>Dirección exacta
+                            </label>
+                            <input class="form-control rounded-3" type="text" asp-for="cliente.DireccionExacta" />
+                            <span class="text-danger small" asp-validation-for="cliente.DireccionExacta"></span>
+                        </div>
+
+                        <div class="text-danger small" asp-validation-summary="All"></div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-primary rounded-pill px-4" asp-page="./Index">
+                                <i class="bi bi-arrow-left"></i> Regresar
+                            </a>
+                            <button type="submit" class="btn btn-outline-success rounded-pill px-4">
+                                <i class="bi bi-check-circle me-1"></i>Agregar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

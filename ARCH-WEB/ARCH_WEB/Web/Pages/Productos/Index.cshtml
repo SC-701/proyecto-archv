@@ -1,0 +1,75 @@
+﻿@page
+@model Web.Pages.Productos.IndexModel
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<header class="subhead">
+    <div class="container text-center">
+        <h1 class="masthead-heading text-uppercase text-light">Lista de Productos</h1>
+    </div>
+</header>
+
+<section class="py-4">
+    <div class="container">
+        <div class="text-start mb-4">
+            <a class="btn btn-success btn-lg" asp-page="./Agregar">
+                <i class="fa-solid fa-square-plus me-1"></i> Agregar
+            </a>
+        </div>
+
+        <div class="row g-4">
+            @if (Model.productos != null && Model.productos.Any())
+            {
+                @foreach (var producto in Model.productos)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card bg-dark text-light shadow-sm rounded-4 border-0 h-100">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="fw-bold mb-2">
+                                    <i class="fa-solid fa-bag-shopping me-2"></i>@producto.Nombre
+                                </h5>
+
+                                <div class="mb-1 text-secondary small">
+                                    <i class="fa-solid fa-money-check-dollar me-2"></i>
+                                    <strong>Precio:</strong> ₡@producto.Precio.ToString("N0")
+                                </div>
+                                <div class="mb-1 text-secondary small">
+                                    <i class="fa-solid fa-arrow-down-9-1 me-2"></i>
+                                    <strong>Cantidad:</strong> @producto.Cantidad
+                                </div>
+                                <div class="mb-1 text-secondary small">
+                                    <i class="fa-solid fa-tag me-2"></i>
+                                    <strong>Talla:</strong> @producto.Talla
+                                </div>
+                                <div class="mb-3 text-secondary small">
+                                    <i class="fa-solid fa-calendar me-2"></i>
+                                    <strong>Fecha:</strong>  @($"{producto.Fecha}")
+                                </div>
+
+                                <div class="mt-auto pt-3 border-top border-secondary-subtle d-flex gap-2">
+                                    <a class="btn btn-outline-warning btn-sm" asp-page="./Editar" asp-route-id="@producto.Id"
+                                       title="Editar">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-page="./Eliminar" asp-route-id="@producto.Id"
+                                       title="Eliminar">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-warning">No hay productos disponibles.</div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

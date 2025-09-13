@@ -1,0 +1,62 @@
+﻿@page
+@model Web.Pages.Apartado.CrearModel
+@{
+    ViewData["Title"] = "Nuevo Apartado";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Nuevo Apartado</h2>
+
+    @if (ViewData["ErrorStock"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @ViewData["ErrorStock"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="apartado.IdCliente" class="form-label"></label>
+            <select asp-for="apartado.IdCliente" class="form-select" asp-items="@(new SelectList(Model.Clientes, "Id", "Nombre"))">
+                <option value="">Seleccione un cliente</option>
+            </select>
+            <span asp-validation-for="apartado.IdCliente" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apartado.IdProducto" class="form-label"></label>
+            <select asp-for="apartado.IdProducto" class="form-select" asp-items="Model.ProductosSelectList">
+                <option value="">Seleccione un producto</option>
+            </select>
+            <span asp-validation-for="apartado.IdProducto" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apartado.Abono" class="form-label"></label>
+            <input asp-for="apartado.Abono" class="form-control" />
+            <span asp-validation-for="apartado.Abono" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apartado.Fecha" class="form-label"></label>
+            <input asp-for="apartado.Fecha" class="form-control" type="date" />
+            <span asp-validation-for="apartado.Fecha" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="apartado.Estado" class="form-label"></label>
+            <select asp-for="apartado.Estado" class="form-select">
+                <option value="">Seleccione un estado</option>
+                <option value="Apartado">Apartado</option>
+                <option value="Entregado">Entregado</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+            <span asp-validation-for="apartado.Estado" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

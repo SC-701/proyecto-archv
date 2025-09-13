@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Autorizacion.Abstracciones" Version="2.0.6" />
+	  <PackageReference Include="Autorizacion.DA" Version="2.0.6" />
+	  <PackageReference Include="Autorizacion.Flujo" Version="2.0.6" />
+	  <PackageReference Include="Autorizacion.Middleware" Version="2.0.6" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+    <ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
+    <ProjectReference Include="..\Reglas\Reglas.csproj" />
+	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+  </ItemGroup>
+
+</Project>

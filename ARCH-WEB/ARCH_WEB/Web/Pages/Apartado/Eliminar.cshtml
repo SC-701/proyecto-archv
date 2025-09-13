@@ -1,0 +1,37 @@
+﻿@page "{id:guid}"
+@model Web.Pages.Apartado.EliminarModel
+@{
+    ViewData["Title"] = "Eliminar Apartado";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-danger">¿Desea eliminar este apartado?</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Cliente:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Cliente</dd>
+
+                <dt class="col-sm-3">Producto:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Producto</dd>
+
+                <dt class="col-sm-3">Abono:</dt>
+                <dd class="col-sm-9">₡@Model.Apartado.Abono</dd>
+
+
+                <dt class="col-sm-3">Fecha:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Fecha.ToString("dd/MM/yyyy")</dd>
+
+                <dt class="col-sm-3">Estado:</dt>
+                <dd class="col-sm-9">@Model.Apartado.Estado</dd>
+            </dl>
+        </div>
+    </div>
+
+    <form method="post" class="mt-3">
+        <input type="hidden" asp-for="Apartado.Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-page="Index" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+</div>

@@ -1,0 +1,88 @@
+﻿@page
+@model Web.Pages.Apartado.IndexModel
+@{
+    ViewData["Title"] = "Apartados";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<header class="subhead">
+    <div class="container text-center">
+        <h1 class="masthead-heading text-uppercase text-light">Apartados</h1>
+    </div>
+</header>
+
+<div class="container mt-4 text-light">
+    <!-- Card contenedor -->
+    <div class="card shadow-sm p-3 mb-4 bg-dark rounded-4 border-0 text-light">
+        <div class="card-body p-3">
+
+            <!-- Header -->
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+             
+                <a asp-page="Crear" class="btn btn-success btn-lg">
+                    <i class="fa-solid fa-square-plus me-1"></i> Agregar
+                </a>
+            </div>
+
+            @if (Model.apartados != null && Model.apartados.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-archv table-sm align-middle text-light">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Producto</th>
+                                <th class="text-end">Precio</th>
+                                <th class="text-end">Abono</th>
+                                <th class="text-end">Restante</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th class="text-center" style="width:230px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.apartados)
+                            {
+                                var badge = (item.Estado ?? "").ToLowerInvariant() switch
+                                {
+                                    "pendiente" => "warning",
+                                    "pagado" or "cancelado" => "success",
+                                    "vencido" => "danger",
+                                    _ => "secondary"
+                                };
+                                <tr>
+                                    <td class="fw-semibold">@item.Cliente</td>
+                                    <td>@item.Producto</td>
+                                    <td class="text-end">₡@item.PrecioProducto.ToString("N0")</td>
+                                    <td class="text-end">₡@item.Abono.ToString("N0")</td>
+                                    <td class="text-end">₡@item.Restante.ToString("N0")</td>
+                                    <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        <span class="badge rounded-pill text-bg-@badge px-3 py-2">@item.Estado</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a asp-page="Detalles" asp-route-id="@item.Id" class="btn btn-outline-info">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <a asp-page="Editar" asp-route-id="@item.Id" class="btn btn-outline-warning">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a asp-page="Eliminar" asp-route-id="@item.Id" class="btn btn-outline-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning m-0">No hay apartados registrados.</div>
+            }
+        </div>
+    </div>
+</div>
